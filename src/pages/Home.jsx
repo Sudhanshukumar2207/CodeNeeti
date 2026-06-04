@@ -63,8 +63,8 @@ export default function Home({ setActivePage }) {
       {/* ── STATS ── */}
       <section className="stats-section">
         <div className="stats-inner">
-          {STATS.map((s) => (
-            <div className="stat-item" key={s.label}>
+          {STATS.map((s, idx) => (
+            <div className="stat-item animate-stat-count" style={{ animationDelay: `${0.2 + idx * 0.15}s` }} key={s.label}>
               <span className="stat-value">{s.value}</span>
               <span className="stat-label">{s.label}</span>
             </div>
@@ -76,7 +76,7 @@ export default function Home({ setActivePage }) {
       <section className="section">
         <div className="section-inner">
           <div style={{ textAlign: "center" }}>
-            <div className="section-tag">What We Do</div>
+            <div className="section-tag animate-pulse-subtle">What We Do</div>
             <h2 className="section-title">Our <span>Services</span></h2>
             <p className="section-desc" style={{ margin: "0 auto" }}>
               From building your first website to training future developers — we've got you covered.
@@ -84,9 +84,9 @@ export default function Home({ setActivePage }) {
           </div>
 
           <div className="grid-2" style={{ marginTop: "3rem" }}>
-            {SERVICES.map((s) => (
-              <div className="card" key={s.title}>
-                <div className="icon-box">{s.icon}</div>
+            {SERVICES.map((s, idx) => (
+              <div className="card card-service animate-card-in" style={{ animationDelay: `${0.1 + idx * 0.1}s` }} key={s.title}>
+                <div className="icon-box icon-glow">{s.icon}</div>
                 <h3 style={{ fontFamily: "var(--font-head)", fontSize: "1.15rem", marginBottom: "0.5rem" }}>{s.title}</h3>
                 <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.7 }}>{s.desc}</p>
               </div>
