@@ -1,0 +1,67 @@
+/* ── PAGE HERO ─────────────────────────────────────── */
+.page-hero {
+  position: relative; overflow: hidden;
+  padding: 9rem 2rem 5rem;
+  text-align: center;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(52,217,255,0.12), transparent 24%),
+              radial-gradient(circle at 80% 30%, rgba(141,93,255,0.1), transparent 20%);
+  pointer-events: none;
+}
+.page-hero-orb {
+  position: absolute; width: 720px; height: 420px;
+  top: 0; left: 50%; transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(52,217,255,0.12), transparent 70%);
+  filter: blur(16px);
+  pointer-events: none;
+}
+.page-hero-content {
+  position: relative; z-index: 1;
+  max-width: 700px; margin: 0 auto;
+}
+.page-hero-content .section-desc { margin: 0 auto; }
+
+/* ── ABOUT ─────────────────────────────────────────── */
+.about-mv-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+}
+@media (max-width: 768px) { .about-mv-grid { grid-template-columns: 1fr; } }
+
+/* ── TIMELINE ──────────────────────────────────────── */
+.timeline {
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; padding-left: 120px;
+}
+.timeline::before {
+  content: '';
+  position: absolute; left: 100px; top: 16px; bottom: 16px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent2));
+}
+.timeline-item {
+  display: flex; align-items: flex-start; gap: 1.5rem;
+  position: relative; padding-bottom: 1.5rem;
+}
+.timeline-year {
+  position: absolute; left: -120px; width: 80px;
+  text-align: right;
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 1rem; color: var(--accent); padding-top: 4px;
+}
+.timeline-dot {
+  position: absolute; left: -14px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); margin-top: 6px;
+  box-shadow: 0 0 16px rgba(52,217,255,0.35);
+  flex-shrink: 0;
+}
+.timeline-card { flex: 1; }
+
+@media (max-width: 640px) {
+  .timeline { padding-left: 80px; }
+  .timeline::before { left: 60px; }
+  .timeline-year { left: -80px; width: 50px; font-size: 0.8rem; }
+}
