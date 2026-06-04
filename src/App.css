@@ -204,6 +204,7 @@ body::after {
   background: linear-gradient(180deg, rgba(52,217,255,0.05), transparent 45%);
   opacity: 0;
   transition: var(--transition);
+  pointer-events: none;
 }
 .card:hover {
   transform: translateY(-4px);
@@ -247,6 +248,7 @@ body::after {
   background: rgba(2, 10, 22, 0.98);
   border-top: 1px solid rgba(52,217,255,0.12);
   padding: 3rem 2rem 1.5rem;
+  animation: footerSlideUp 0.8s ease forwards;
 }
 .footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-top {
@@ -260,21 +262,103 @@ body::after {
   color: var(--accent); margin-bottom: 1rem;
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.footer-col ul button {
+.footer-link-item {
+  animation: linkHoverIn 0.5s ease forwards;
+  opacity: 0;
+}
+.footer-link-item button {
   background: none; border: none; cursor: pointer;
   font-family: var(--font-body); font-size: 0.9rem;
   color: var(--text-muted); text-align: left;
-  transition: var(--transition); padding: 0;
+  transition: all 0.3s ease; padding: 0;
+  position: relative;
 }
-.footer-col ul button:hover { color: var(--accent); padding-left: 4px; }
+.footer-link-item button::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+.footer-link-item button:hover { 
+  color: var(--accent);
+  padding-left: 4px;
+}
+.footer-link-item button:hover::after { width: 100%; }
 .footer-col ul li { color: var(--text-muted); font-size: 0.9rem; }
+.footer-contact-item {
+  animation: contactFade 0.5s ease forwards;
+  opacity: 0;
+}
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem;
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 1rem;
+  animation: bottomFadeIn 0.8s ease forwards;
+  opacity: 0;
 }
 .footer-bottom p { font-size: 0.85rem; color: var(--text-muted); }
 .footer-bottom span { color: var(--accent); }
+
+.animate-footer-fade {
+  animation: footerElementFade 0.7s ease forwards;
+  opacity: 0;
+}
+
+/* ──── FOOTER ANIMATIONS ──────────────────────────── */
+@keyframes footerSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes footerElementFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes linkHoverIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contactFade {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bottomFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 .animate-slide { opacity: 0; transform: translateY(16px); animation: slideIn 0.8s forwards ease; }
 .animate-float { animation: float 6s ease-in-out infinite; }
@@ -313,6 +397,10 @@ body::after {
   background: rgba(0,212,255,0.1); border: 1px solid var(--border);
   border-radius: 99px; font-size: 0.72rem; font-weight: 600;
   color: var(--accent); letter-spacing: 0.05em;
+}
+
+@media (max-width: 1024px) {
+  .team-featured-card { width: 100%; }
 }
 
 /* ─── ANIMATIONS ──────────────────────────────────── */

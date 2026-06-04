@@ -1,34 +1,63 @@
 import "./PageHero.css";
 import "./Extra.css";
+import sudhanshuPhoto from "../assets/sudhanshu.jpg";
+import vickyPhoto from "../assets/vicky.png";
+import dhanrajPhoto from "../assets/dhanraj.png";
+import rishuPhoto from "../assets/rishu.png";
+import himanshuPhoto from "../assets/himanshu.png";
+import aryanPhoto from "../assets/aryan.png";
+import kesherPhoto from "../assets/kesher.png";
+
+const FOUNDER = {
+  name: "Sudhanshu Kumar",
+  role: "CEO & Founder",
+  skills: ["Leadership", "Strategy", "Web & App Vision"],
+  photo: sudhanshuPhoto,
+  bio: "A visionary leader driving CodeNeeti forward with innovation, experience, and a commitment to both digital products and developer growth.",
+};
 
 const TEAM = [
   {
-    name: "Your Name",
-    role: "Founder & Lead Developer",
+    name: "Himanshu Kumar",
+    role: "Training Head",
+    skills: ["Python", "DSA", "Web Basics"],
+    photo: himanshuPhoto,
+    bio: "Dedicated educator who has trained 200+ students with a practical, project-based approach.",
+  },
+  {
+    name: "Aryan Vaihav",
+    role: "Marketing Head",
+    skills: ["Brand Strategy", "Growth", "Digital Campaigns"],
+    photo: aryanPhoto,
+    bio: "Drives brand visibility and positions CodeNeeti as the go-to choice for tech solutions and training.",
+  },
+  {
+    name: "Kesher Tirkey",
+    role: "Full Stack Developer",
     skills: ["React", "Node.js", "MongoDB"],
-    emoji: "👨‍💻",
-    bio: "Passionate developer with 4+ years of experience in full-stack development and a vision to empower businesses digitally.",
+    photo: kesherPhoto,
+    bio: "Builds polished full-stack solutions that connect beautiful interfaces with robust backend systems.",
   },
   {
-    name: "Team Member 2",
-    role: "UI/UX Designer",
-    skills: ["Figma", "CSS", "Prototyping"],
-    emoji: "🎨",
-    bio: "Creative designer who transforms complex problems into beautiful, intuitive user experiences.",
-  },
-  {
-    name: "Team Member 3",
+    name: "Dhanraj Kumar",
     role: "App Developer",
     skills: ["Flutter", "React Native", "Firebase"],
-    emoji: "📱",
+    photo: dhanrajPhoto,
     bio: "Mobile-first developer crafting smooth, performant apps for both iOS and Android platforms.",
   },
   {
-    name: "Team Member 4",
-    role: "Training Head",
-    skills: ["Python", "DSA", "Web Basics"],
-    emoji: "🎓",
-    bio: "Dedicated educator who has trained 200+ students with a practical, project-based approach.",
+    name: "Vicky Kumar",
+    role: "Backend Developer",
+    skills: ["Node.js", "Express", "SQL/NoSQL"],
+    photo: vickyPhoto,
+    bio: "Designs secure and scalable server-side architectures that power seamless digital experiences.",
+  },
+  {
+    name: "Rishu Vaihav",
+    role: "UI/UX Designer",
+    skills: ["Figma", "CSS", "Prototyping"],
+    photo: rishuPhoto,
+    bio: "Creative designer who transforms complex problems into beautiful, intuitive user experiences.",
   },
 ];
 
@@ -48,10 +77,30 @@ export default function OurTeam() {
 
       <section className="section">
         <div className="section-inner">
-          <div className="grid-2">
+          <div className="team-featured-wrapper">
+            <div className="card team-card team-featured-card">
+              <div className="team-avatar">
+                <img src={FOUNDER.photo} alt={`${FOUNDER.name} photo`} />
+              </div>
+              <div className="team-info">
+                <h3 style={{ fontFamily: "var(--font-head)", fontSize: "1.35rem", marginBottom: "0.2rem" }}>{FOUNDER.name}</h3>
+                <p className="team-role">{FOUNDER.role}</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.8, margin: "1rem 0" }}>{FOUNDER.bio}</p>
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  {FOUNDER.skills.map((s) => (
+                    <span className="badge" key={s}>{s}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid-3" style={{ marginTop: "3rem" }}>
             {TEAM.map((member) => (
               <div className="card team-card" key={member.name}>
-                <div className="team-avatar">{member.emoji}</div>
+                <div className="team-avatar">
+                  <img src={member.photo} alt={`${member.name} photo`} />
+                </div>
                 <div className="team-info">
                   <h3 style={{ fontFamily: "var(--font-head)", fontSize: "1.15rem", marginBottom: "0.2rem" }}>{member.name}</h3>
                   <p className="team-role">{member.role}</p>

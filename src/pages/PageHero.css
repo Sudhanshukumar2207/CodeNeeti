@@ -10,6 +10,7 @@
   background: radial-gradient(circle at 20% 20%, rgba(52,217,255,0.12), transparent 24%),
               radial-gradient(circle at 80% 30%, rgba(141,93,255,0.1), transparent 20%);
   pointer-events: none;
+  animation: heroBackgroundShift 8s ease-in-out infinite;
 }
 .page-hero-orb {
   position: absolute; width: 720px; height: 420px;
@@ -17,17 +18,27 @@
   background: radial-gradient(ellipse, rgba(52,217,255,0.12), transparent 70%);
   filter: blur(16px);
   pointer-events: none;
+  animation: orbWave 6s ease-in-out infinite;
 }
 .page-hero-content {
   position: relative; z-index: 1;
   max-width: 700px; margin: 0 auto;
+  animation: fadeInDown 0.8s ease forwards;
 }
 .page-hero-content .section-desc { margin: 0 auto; }
+.page-hero-content .section-title {
+  animation: titleReveal 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
 
 /* ── ABOUT ─────────────────────────────────────────── */
 .about-mv-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
 }
+.about-mv-grid .card {
+  animation: slideInCard 0.8s ease forwards;
+}
+.about-mv-grid .card:nth-child(1) { animation-delay: 0.2s; }
+.about-mv-grid .card:nth-child(2) { animation-delay: 0.35s; }
 @media (max-width: 768px) { .about-mv-grid { grid-template-columns: 1fr; } }
 
 /* ── TIMELINE ──────────────────────────────────────── */
@@ -40,28 +51,131 @@
   position: absolute; left: 100px; top: 16px; bottom: 16px;
   width: 2px;
   background: linear-gradient(180deg, var(--accent), var(--accent2));
+  animation: drawLine 1.5s ease forwards;
+  animation-delay: 0.3s;
+  transform-origin: top;
+  height: 0;
+  animation: drawLine 1.5s ease forwards 0.3s;
 }
 .timeline-item {
   display: flex; align-items: flex-start; gap: 1.5rem;
   position: relative; padding-bottom: 1.5rem;
+  animation: slideInTimeline 0.7s ease forwards;
+  opacity: 0;
 }
+.timeline-item:nth-child(1) { animation-delay: 0.4s; }
+.timeline-item:nth-child(2) { animation-delay: 0.5s; }
+.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+.timeline-item:nth-child(4) { animation-delay: 0.7s; }
 .timeline-year {
   position: absolute; left: -120px; width: 80px;
   text-align: right;
   font-family: var(--font-head); font-weight: 800;
   font-size: 1rem; color: var(--accent); padding-top: 4px;
+  animation: yearFadeIn 0.6s ease forwards;
+  opacity: 0;
 }
+.timeline-item:nth-child(1) .timeline-year { animation-delay: 0.4s; }
+.timeline-item:nth-child(2) .timeline-year { animation-delay: 0.5s; }
+.timeline-item:nth-child(3) .timeline-year { animation-delay: 0.6s; }
+.timeline-item:nth-child(4) .timeline-year { animation-delay: 0.7s; }
 .timeline-dot {
   position: absolute; left: -14px;
   width: 12px; height: 12px; border-radius: 50%;
   background: var(--accent); margin-top: 6px;
   box-shadow: 0 0 16px rgba(52,217,255,0.35);
   flex-shrink: 0;
+  animation: dotBlink 2s ease-in-out infinite;
 }
+.timeline-item:nth-child(1) .timeline-dot { animation-delay: 0.4s, 0.4s; }
+.timeline-item:nth-child(2) .timeline-dot { animation-delay: 0.5s, 0.5s; }
+.timeline-item:nth-child(3) .timeline-dot { animation-delay: 0.6s, 0.6s; }
+.timeline-item:nth-child(4) .timeline-dot { animation-delay: 0.7s, 0.7s; }
 .timeline-card { flex: 1; }
+
+/* ── ANIMATIONS ─────────────────────────────────────── */
+@keyframes heroBackgroundShift {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.1); }
+}
+
+@keyframes orbWave {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+  50% { transform: translateX(-50%) scale(1.08); opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleReveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes slideInCard {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes slideInTimeline {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes yearFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dotBlink {
+  0%, 100% { box-shadow: 0 0 16px rgba(52,217,255,0.35); transform: scale(1); }
+  50% { box-shadow: 0 0 24px rgba(52,217,255,0.6); transform: scale(1.2); }
+}
 
 @media (max-width: 640px) {
   .timeline { padding-left: 80px; }
   .timeline::before { left: 60px; }
   .timeline-year { left: -80px; width: 50px; font-size: 0.8rem; }
 }
+
