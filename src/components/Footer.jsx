@@ -1,3 +1,4 @@
+import logo from "../assets/Codeneeti_logo-removebg.png";
 export default function Footer({ setActivePage }) {
   const navigate = (key) => {
     setActivePage(key);
@@ -11,7 +12,7 @@ export default function Footer({ setActivePage }) {
           {/* Brand */}
           <div className="footer-brand animate-footer-fade" style={{ animationDelay: "0.1s" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
-              <div className="nav-logo-box"><img src="/src/assets/Codeneeti_logo-removebg.png" alt="CodeNeeti Logo" height={35} /></div>
+              <div className="nav-logo-box"><img src={logo} alt="CodeNeeti Logo" height={35} /></div>
               <span style={{ fontFamily: "var(--font-head)", fontSize: "1.2rem", fontWeight: 700 }}>
                 Code<span style={{ color: "var(--accent)" }}>Neeti</span>
               </span>

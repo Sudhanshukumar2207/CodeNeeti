@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import logo from "../assets/Codeneeti_logo-removebg.png";
 
 const NAV_ITEMS = [
   { label: "Home",          key: "home"    },
@@ -28,7 +29,7 @@ export default function Navbar({ activePage, setActivePage }) {
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       {/* Brand */}
       <div className="nav-brand" onClick={() => navigate("home")}>
-        <div className="nav-logo-box"><img src="/src/assets/Codeneeti_logo-removebg.png" alt="CodeNeeti Logo" height="40" /></div>
+        <div className="nav-logo-box"><img src={logo} alt="CodeNeeti Logo" height="40" /></div>
         <span className="nav-brand-name">Code<span>Neeti</span></span>
       </div>
 

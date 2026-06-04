@@ -113,7 +113,7 @@ body::after {
 }
 .nav-logo-box {
   width: 36px; height: 36px;
-  background: linear-gradient(135deg, rgba(52,217,255,0.18), rgba(141,93,255,0.2));
+  /* background: linear-gradient(135deg, rgba(52,217,255,0.18), rgba(141,93,255,0.2)); */
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
 }
