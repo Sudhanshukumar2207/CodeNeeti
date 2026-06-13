@@ -1,6 +1,7 @@
 const POSTS = [
   {
     id: 4,
+    slug: "ai-automation-expert-in-patna",
     title: "AI Automation Expert in Patna",
     date: "2026-06-13",
     excerpt: "CodeNeeti brings AI-powered automation solutions for Patna businesses, from chatbots to workflow and content automation.",
@@ -70,6 +71,7 @@ Reach out to CodeNeeti to consult about your needs and get a tailor-made AI auto
   },
   {
     id: 1,
+    slug: "how-to-start-a-web-project",
     title: "How to Start a Web Project",
     date: "2026-06-01",
     excerpt: "A quick guide to kickstarting your first web app with React and Vite.",
@@ -85,6 +87,7 @@ This article walks through each step with examples and helpful tips.`,
   },
   {
     id: 2,
+    slug: "tips-for-learning-javascript-faster",
     title: "Tips for Learning JavaScript Faster",
     date: "2026-05-20",
     excerpt: "Practical learning techniques and resources to accelerate your JS journey.",
@@ -99,6 +102,7 @@ Combine practice with reading and you'll retain concepts faster.`,
   },
   {
     id: 3,
+    slug: "deploying-a-react-app",
     title: "Deploying a React App",
     date: "2026-04-15",
     excerpt: "Steps to build and deploy a production-ready React application.",

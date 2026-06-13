@@ -63,10 +63,9 @@ function renderMarkdown(raw) {
 }
 
 export default function BlogPost() {
-  const { id } = useParams();
-  const postId = parseInt(id, 10);
+  const { slug } = useParams();
   const navigate = useNavigate();
-  const post = POSTS.find((p) => p.id === postId) || null;
+  const post = POSTS.find((p) => p.slug === slug) || null;
 
   if (!post) {
     return (

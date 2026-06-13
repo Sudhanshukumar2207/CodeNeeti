@@ -28,7 +28,7 @@ export default function Blog() {
                 <h3 className="post-title">{p.title}</h3>
                 <p className="post-excerpt">{p.excerpt}</p>
                 <div className="post-actions">
-                  <Link to={`/blog/${p.id}`} className="btn btn-outline" onClick={() => window.scrollTo({ top: 0 })}>
+                  <Link to={`/blog/${p.slug}`} className="btn btn-outline" onClick={() => window.scrollTo({ top: 0 })}>
                     Read More
                   </Link>
                 </div>
