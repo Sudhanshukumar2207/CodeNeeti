@@ -15,7 +15,7 @@ const config = {
   },
   html: {
     fullName: "CodeNeeti",
-    email: "contact@codeneeti.com",
+    email: "contact@codeneeti.in",
   },
 };
 

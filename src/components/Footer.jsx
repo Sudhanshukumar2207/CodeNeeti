@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/Codeneeti_logo-removebg.png";
-export default function Footer({ setActivePage }) {
-  const navigate = (key) => {
-    setActivePage(key);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+
+export default function Footer() {
+  const navigate = useNavigate();
+  const go = (to) => { navigate(to); window.scrollTo({ top: 0, behavior: "smooth" }); };
 
   return (
     <footer className="footer">
@@ -27,9 +27,9 @@ export default function Footer({ setActivePage }) {
           <div className="footer-col animate-footer-fade" style={{ animationDelay: "0.2s" }}>
             <h4>Quick Links</h4>
             <ul>
-              {[["Home","home"],["About Us","about"],["Why Choose Us","why"],["Our Team","team"],["Contact Us","contact"]].map(([label, key], idx) => (
-                <li key={key} className="footer-link-item" style={{ animationDelay: `${0.25 + idx * 0.08}s` }}>
-                  <button onClick={() => navigate(key)}>{label}</button>
+              {[["Home","/"],["About Us","/about"],["Why Choose Us","/why"],["Our Team","/team"],["Contact Us","/contact"]].map(([label, to], idx) => (
+                <li key={to} className="footer-link-item" style={{ animationDelay: `${0.25 + idx * 0.08}s` }}>
+                  <button onClick={() => go(to)}>{label}</button>
                 </li>
               ))}
             </ul>
@@ -39,7 +39,7 @@ export default function Footer({ setActivePage }) {
           <div className="footer-col animate-footer-fade" style={{ animationDelay: "0.3s" }}>
             <h4>Contact</h4>
             <ul>
-              <li className="footer-contact-item" style={{ animationDelay: "0.35s" }}><a style={{ color: "inherit", textDecoration: "none" }} href="mailto:info@codeneeti.com">📨 info@codeneeti.com</a></li>
+              <li className="footer-contact-item" style={{ animationDelay: "0.35s" }}><a style={{ color: "inherit", textDecoration: "none" }} href="mailto:info@codeneeti.com">📨 info@codeneeti.in</a></li>
               <li className="footer-contact-item" style={{ animationDelay: "0.43s" }}><a style={{ color: "inherit", textDecoration: "none" }} href="tel:+919661542794">📞 +91 9661542794</a></li>
               <li className="footer-contact-item" style={{ animationDelay: "0.51s" }}>📍 Rajapur Pull, Patna</li>
             </ul>

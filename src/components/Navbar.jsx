@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/Codeneeti_logo-removebg.png";
 
 const NAV_ITEMS = [
@@ -6,10 +7,12 @@ const NAV_ITEMS = [
   { label: "About Us",      key: "about"   },
   { label: "Why Choose Us", key: "why"     },
   { label: "Our Team",      key: "team"    },
+  { label: "Blog",          key: "blog"    },
   { label: "Contact Us",    key: "contact" },
 ];
 
-export default function Navbar({ activePage, setActivePage }) {
+export default function Navbar() {
+  const navigate = useNavigate();
   const [scrolled,    setScrolled]    = useState(false);
   const [menuOpen,    setMenuOpen]    = useState(false);
 
@@ -19,8 +22,8 @@ export default function Navbar({ activePage, setActivePage }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navigate = (key) => {
-    setActivePage(key);
+  const doNavigate = (to) => {
+    navigate(to);
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -28,7 +31,7 @@ export default function Navbar({ activePage, setActivePage }) {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       {/* Brand */}
-      <div className="nav-brand" onClick={() => navigate("home")}>
+      <div className="nav-brand" onClick={() => doNavigate("/")}>
         <div className="nav-logo-box"><img src={logo} alt="CodeNeeti Logo" height="40" /></div>
         <span className="nav-brand-name">Code<span>Neeti</span></span>
       </div>
@@ -37,12 +40,13 @@ export default function Navbar({ activePage, setActivePage }) {
       <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
         {NAV_ITEMS.map((item) => (
           <li key={item.key}>
-            <button
-              className={`${activePage === item.key ? "active" : ""} ${item.key === "contact" ? "nav-cta" : ""}`}
-              onClick={() => navigate(item.key)}
+            <NavLink
+              to={item.key === "home" ? "/" : `/${item.key}`}
+              className={({ isActive }) => `${isActive ? "active" : ""} ${item.key === "contact" ? "nav-cta" : ""}`}
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
-            </button>
+            </NavLink>
           </li>
         ))}
       </ul>

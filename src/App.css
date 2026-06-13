@@ -124,13 +124,19 @@ body::after {
 .nav-brand-name span { color: var(--accent); }
 
 .nav-links { display: flex; gap: 0.25rem; list-style: none; }
-.nav-links button {
+.nav-links button,
+.nav-links a {
   background: none; border: none; cursor: pointer;
   font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
   color: var(--text-muted); padding: 0.5rem 1rem;
   border-radius: var(--radius); transition: var(--transition);
+  text-decoration: none;
 }
+.nav-links a:hover,
+.nav-links a:visited,
+.nav-links a:link,
 .nav-links button:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+.nav-links a.active,
 .nav-links button.active {
   color: var(--accent);
   background: rgba(52,217,255,0.12);
@@ -160,7 +166,7 @@ body::after {
     padding: 1rem;
   }
   .nav-links.open { display: flex; }
-  .nav-links button { width: 100%; text-align: left; }
+  .nav-links button, .nav-links a { width: 100%; text-align: left; display: inline-block; }
   .nav-cta { margin-top: 0.5rem; }
 }
 

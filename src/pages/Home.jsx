@@ -1,4 +1,5 @@
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 const SERVICES = [
   { icon: "🌐", title: "Web Development",     desc: "Modern, responsive websites and web apps built with the latest technologies like React, Next.js, and Node.js." },
@@ -14,7 +15,8 @@ const STATS = [
   { value: "3+",   label: "Years Experience"   },
 ];
 
-export default function Home({ setActivePage }) {
+export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="home">
       {/* ── HERO ── */}
@@ -35,10 +37,10 @@ export default function Home({ setActivePage }) {
             Your vision, our code — let's build something extraordinary.
           </p>
           <div className="hero-btns animate-slide" style={{ animationDelay: "0.4s" }}>
-            <button className="btn btn-primary" onClick={() => { setActivePage("contact"); window.scrollTo({ top: 0 }); }}>
+            <button className="btn btn-primary" onClick={() => { navigate("/contact"); window.scrollTo({ top: 0 }); }}>
               Get in Touch ➜
             </button>
-            <button className="btn btn-outline" onClick={() => { setActivePage("about"); window.scrollTo({ top: 0 }); }}>
+            <button className="btn btn-outline" onClick={() => { navigate("/about"); window.scrollTo({ top: 0 }); }}>
               Learn More
             </button>
           </div>
@@ -103,7 +105,7 @@ export default function Home({ setActivePage }) {
           <p style={{ color: "var(--text-muted)", marginBottom: "2rem" }}>
             Let's discuss your project or training needs. Our team is just a message away.
           </p>
-          <button className="btn btn-primary" onClick={() => { setActivePage("contact"); window.scrollTo({ top: 0 }); }}>
+          <button className="btn btn-primary" onClick={() => { navigate("/contact"); window.scrollTo({ top: 0 }); }}>
             Start a Project ➜
           </button>
         </div>

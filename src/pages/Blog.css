@@ -1,0 +1,7 @@
+.blog-page { }
+.posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.card-post { padding: 1.25rem; background: var(--surface); border-radius: 10px; box-shadow: var(--card-shadow); }
+.post-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.45rem; }
+.post-title { margin: 0.25rem 0 0.6rem; font-size: 1.05rem; }
+.post-excerpt { color: var(--text-muted); line-height: 1.6; margin-bottom: 0.8rem; }
+.post-actions { text-align: right; }
