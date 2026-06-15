@@ -1,6 +1,7 @@
 import "./Blog.css";
 import POSTS from "./blogData";
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 function escapeHtml(text) {
   return text
@@ -27,7 +28,7 @@ function renderMarkdown(raw) {
       return;
     }
 
-    const headingMatch = trimmed.match(/^(#{2,6})\s+(.*)$/);
+    const headingMatch = trimmed.match(/^(#{1,6})\s+(.*)$/);
     if (headingMatch) {
       if (inList) {
         html += "</ul>";
@@ -83,7 +84,22 @@ export default function BlogPost() {
     );
   }
 
+  const canonicalUrl = `https://codeneeti.in/blog/${post.slug}`;
+  const metaTitle = post.metaTitle || `${post.title} | CodeNeeti`;
+  const metaDescription = post.metaDescription || post.excerpt || "Read the latest article from CodeNeeti.";
+
   return (
+    <>
+<Helmet>
+  <title>{metaTitle}</title>
+  <meta name="description" content={metaDescription} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content={metaTitle} />
+  <meta property="og:description" content={metaDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="CodeNeeti" />
+</Helmet>
     <div className="section">
       <div className="section-inner">
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
@@ -103,5 +119,6 @@ export default function BlogPost() {
         </div>
       </div>
     </div>
+    </>
   );
 }

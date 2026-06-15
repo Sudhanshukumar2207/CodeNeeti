@@ -24,7 +24,7 @@ export default function Home() {
         <title>CodeNeeti | Web & App Development Company</title>
         <meta
           name="description"
-          content="CodeNeeti provides Web Development, App Development, AI Automation and Tech Training services in Patna."
+          content="CodeNeeti provides Web Development, App Development, AI Automation and Tech Training services."
         />
       </Helmet>
     <div className="home">
