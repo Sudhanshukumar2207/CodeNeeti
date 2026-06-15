@@ -1,9 +1,18 @@
 import "./Blog.css";
 import POSTS from "./blogData";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function Blog() {
   return (
+  <>
+<Helmet>
+  <title>Blog | CodeNeeti</title>
+  <meta
+    name="description"
+    content="Read the latest articles on web development, AI automation, SEO and technology from CodeNeeti."
+  />
+</Helmet>
     <div className="blog-page">
       <section className="section">
         <div className="section-inner">
@@ -38,5 +47,6 @@ export default function Blog() {
         </div>
       </section>
     </div>
+  </>
   );
 }

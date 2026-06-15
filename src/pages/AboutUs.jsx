@@ -1,4 +1,6 @@
 import "./PageHero.css";
+import { Helmet } from "react-helmet-async";
+
 
 const VALUES = [
   { icon: "💡", title: "Innovation First",  desc: "We stay ahead of the curve, adopting modern technologies to build future-proof solutions." },
@@ -16,12 +18,20 @@ const MILESTONES = [
 
 export default function AboutUs() {
   return (
-    <div>
-      {/* Page Hero */}
-      <section className="page-hero">
-        <div className="page-hero-orb" />
-        <div className="page-hero-content">
-          <div className="section-tag">Who We Are</div>
+    <>
+<Helmet>
+  <title>About CodeNeeti | Web & App Development Company</title>
+  <meta
+    name="description"
+    content="Learn more about CodeNeeti, our mission, vision and commitment to quality web and app development services."
+  />
+</Helmet>
+      <div>
+        {/* Page Hero */}
+        <section className="page-hero">
+          <div className="page-hero-orb" />
+          <div className="page-hero-content">
+            <div className="section-tag">Who We Are</div>
           <h1 className="section-title">About <span>CodeNeeti</span></h1>
           <p className="section-desc" style={{ margin: "0 auto" }}>
             We are a passionate team of developers, designers, and educators dedicated to transforming
@@ -95,5 +105,6 @@ export default function AboutUs() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const SERVICES = [
   { icon: "🌐", title: "Web Development",     desc: "Modern, responsive websites and web apps built with the latest technologies like React, Next.js, and Node.js." },
@@ -18,6 +19,14 @@ const STATS = [
 export default function Home() {
   const navigate = useNavigate();
   return (
+    <>
+      <Helmet>
+        <title>CodeNeeti | Web & App Development Company</title>
+        <meta
+          name="description"
+          content="CodeNeeti provides Web Development, App Development, AI Automation and Tech Training services in Patna."
+        />
+      </Helmet>
     <div className="home">
       {/* ── HERO ── */}
       <section className="hero">
@@ -111,5 +120,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

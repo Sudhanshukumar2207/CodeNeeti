@@ -7,6 +7,7 @@ import rishuPhoto from "../assets/rishu.png";
 import himanshuPhoto from "../assets/himanshu.png";
 import aryanPhoto from "../assets/aryan.png";
 import kesherPhoto from "../assets/kesher.png";
+import { Helmet } from "react-helmet-async";
 
 const FOUNDER = {
   name: "Sudhanshu Kumar",
@@ -63,6 +64,14 @@ const TEAM = [
 
 export default function OurTeam() {
   return (
+   <>
+<Helmet>
+  <title>Our Team | CodeNeeti</title>
+  <meta
+    name="description"
+    content="Meet the talented team behind CodeNeeti and our expertise in web development and technology training."
+  />
+</Helmet>
     <div>
       <section className="page-hero">
         <div className="page-hero-orb" />
@@ -133,5 +142,6 @@ export default function OurTeam() {
         </div>
       </section>
     </div>
+    </>
   );
 }

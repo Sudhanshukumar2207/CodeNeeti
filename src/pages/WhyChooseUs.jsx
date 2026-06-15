@@ -1,5 +1,6 @@
 import "./PageHero.css";
 import "./Extra.css";
+import { Helmet } from "react-helmet-async";
 
 const REASONS = [
   { icon: "⚡", title: "Fast Delivery",          desc: "We follow agile methodology to deliver projects on time without compromising quality." },
@@ -21,6 +22,14 @@ const COMPARE = [
 
 export default function WhyChooseUs() {
   return (
+    <>
+<Helmet>
+  <title>Why Choose CodeNeeti | Trusted Development Partner</title>
+  <meta
+    name="description"
+    content="Discover why businesses choose CodeNeeti for website development, mobile apps and AI automation solutions."
+  />
+</Helmet>
     <div>
       <section className="page-hero">
         <div className="page-hero-orb" />
@@ -89,6 +98,7 @@ export default function WhyChooseUs() {
         </div>
       </section>
     </div>
+   </>
   );
 }
 

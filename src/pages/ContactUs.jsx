@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "./PageHero.css";
 import "./Extra.css";
+import {Helmet} from "react-helmet-async";
 
 const config = {
   contact: {
@@ -96,6 +97,14 @@ export default function ContactUs() {
   };
 
   return (
+    <>
+<Helmet>
+  <title>Contact CodeNeeti | Free Consultation</title>
+  <meta
+    name="description"
+    content="Contact CodeNeeti for website development, app development, AI automation and training services."
+  />
+</Helmet>
     <div>
       <section className="page-hero">
         <div className="page-hero-orb" />
@@ -226,5 +235,6 @@ export default function ContactUs() {
         </div>
       </section>
     </div>
+    </>
   );
 }
