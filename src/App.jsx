@@ -10,6 +10,7 @@ import ContactUs from "./pages/ContactUs";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import "./App.css";
+import VRPlayer from "./pages/VRPlayer";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
       </main>
+      <VRPlayer />
       <Footer />
     </div>
   );
