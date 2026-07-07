@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -14,6 +14,8 @@ import VRPlayer from "./pages/VRPlayer";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isVrPage = location.pathname === "/vr";
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 800);
@@ -33,7 +35,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      {!isVrPage && <Navbar />}
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -43,10 +45,10 @@ export default function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/vr" element={<VRPlayer />} />
         </Routes>
       </main>
-      <VRPlayer />
-      <Footer />
+      {!isVrPage && <Footer />}
     </div>
   );
 }
