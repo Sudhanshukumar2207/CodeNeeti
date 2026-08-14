@@ -32,7 +32,7 @@ export default function AboutUs() {
           <div className="page-hero-orb" />
           <div className="page-hero-content">
             <div className="section-tag">Who We Are</div>
-          <h1 className="section-title">About <span>CodeNeeti</span></h1>
+          <h1 className="section-title">About <span>Sudhanshu</span></h1>
           <p className="section-desc" style={{ margin: "0 auto" }}>
             We are a passionate team of developers, designers, and educators dedicated to transforming
             ideas into digital realities and empowering the next wave of tech talent.
