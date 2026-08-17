@@ -12,6 +12,23 @@ function escapeHtml(text) {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeLinkUrl(url) {
+  const normalizedUrl = url.trim().replace(/^\{\{/, "").replace(/\}\}$/, "");
+
+  return /^(https?:|mailto:|tel:|\/)/i.test(normalizedUrl) ? normalizedUrl : null;
+}
+
+function renderInlineMarkdown(text) {
+  return escapeHtml(text)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\(([^\s)]+)\)/g, (_, label, url) => {
+      const href = sanitizeLinkUrl(url);
+      return href
+        ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`
+        : label;
+    });
+}
+
 function renderMarkdown(raw) {
   const lines = raw.split("\n");
   let html = "";
@@ -35,7 +52,7 @@ function renderMarkdown(raw) {
         inList = false;
       }
       const level = headingMatch[1].length;
-      html += `<h${level}>${escapeHtml(headingMatch[2])}</h${level}>`;
+      html += `<h${level}>${renderInlineMarkdown(headingMatch[2])}</h${level}>`;
       return;
     }
 
@@ -44,7 +61,7 @@ function renderMarkdown(raw) {
         html += "<ul>";
         inList = true;
       }
-      html += `<li>${escapeHtml(trimmed.slice(2))}</li>`;
+      html += `<li>${renderInlineMarkdown(trimmed.slice(2))}</li>`;
       return;
     }
 
@@ -53,7 +70,7 @@ function renderMarkdown(raw) {
       inList = false;
     }
 
-    html += `<p>${escapeHtml(trimmed)}</p>`;
+    html += `<p>${renderInlineMarkdown(trimmed)}</p>`;
   });
 
   if (inList) {

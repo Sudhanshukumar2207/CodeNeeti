@@ -37,3 +37,10 @@
 .blog-post-content li {
   margin-bottom: 0.55rem;
 }
+
+.blog-post-content a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
