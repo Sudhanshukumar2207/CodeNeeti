@@ -10,6 +10,11 @@ export function Reveal({ as: Tag = "div", delay = 0, className = "", style, chil
     const el = ref.current;
     if (!el) return;
     if (!("IntersectionObserver" in window)) { el.classList.add("in"); return; }
+    // Already on screen at mount (e.g. hero): show right away, don't wait for the observer
+    if (el.getBoundingClientRect().top < window.innerHeight) {
+      const raf = requestAnimationFrame(() => el.classList.add("in"));
+      return () => cancelAnimationFrame(raf);
+    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -60,7 +65,7 @@ export function PageHero({ eyebrow, title, desc, crumb }) {
               <span>{crumb}</span>
             </nav>
           )}
-          {eyebrow && <div className="eyebrow" style={{ display: "flex", justifyContent: "center" }}>{eyebrow}</div>}
+          {eyebrow && <div className="eyebrow">{eyebrow}</div>}
           <h1 className="h1">{title}</h1>
           {desc && <p className="lead">{desc}</p>}
         </Reveal>

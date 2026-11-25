@@ -91,7 +91,7 @@ export default function OurTeam() {
       <section className="section-tight">
         <div className="container">
           <Reveal className="cta-band">
-            <div className="eyebrow center" style={{ display: "flex", justifyContent: "center" }}>Careers</div>
+            <div className="eyebrow center">Careers</div>
             <h2 className="h2">Want to join our <span className="grad-text">team?</span></h2>
             <p className="lead">
               We're always looking for talented developers, designers and educators to join the CodeNeeti family.

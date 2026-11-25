@@ -1,10 +1,14 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   FiArrowRight, FiGlobe, FiSmartphone, FiCpu, FiTrendingUp, FiBookOpen, FiCompass,
   FiCheck, FiClock,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { SiReact, SiNodedotjs, SiFlutter, SiGoogle, SiOpenai, SiMongodb, SiFigma, SiNextdotjs } from "react-icons/si";
 import { Reveal, SectionHead, CtaBand } from "../components/ui";
+import logo from "../assets/Codeneeti_logo-removebg.png";
 import POSTS from "./blogData";
 import { formatDate, readingTime, sortByDate } from "./blogUtils";
 
@@ -31,6 +35,36 @@ const STEPS = [
   { title: "Launch",      desc: "Testing, deployment and a smooth go-live." },
   { title: "Support",     desc: "Ongoing maintenance and growth after delivery." },
 ];
+
+const ROTATING = ["Websites", "Mobile Apps", "AI Automations", "SEO Strategies"];
+
+const OUTER = [
+  { label: "React",   icon: <SiReact />,     color: "#149ECA" },
+  { label: "Google",  icon: <SiGoogle />,    color: "#4285F4" },
+  { label: "Node.js", icon: <SiNodedotjs />, color: "#5FA04E" },
+  { label: "OpenAI",  icon: <SiOpenai />,    color: "#111111" },
+  { label: "Flutter", icon: <SiFlutter />,   color: "#02569B" },
+  { label: "MongoDB", icon: <SiMongodb />,   color: "#47A248" },
+  { label: "Figma",   icon: <SiFigma />,     color: "#F24E1E" },
+  { label: "Next.js", icon: <SiNextdotjs />, color: "#111111" },
+];
+
+const INNER = ["Web", "AI", "Apps", "SEO"];
+
+/** Cycles through words with a slide-in animation. */
+function RotatingWord({ words, interval = 2200 }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setI((n) => (n + 1) % words.length), interval);
+    return () => clearInterval(id);
+  }, [words.length, interval]);
+  return (
+    <span className="rotator">
+      <span key={i} className="rotator-word">{words[i]}</span>
+    </span>
+  );
+}
 
 const HIGHLIGHTS = ["Custom solutions, no templates", "On-time delivery", "Post-launch support"];
 
@@ -59,20 +93,24 @@ export default function Home() {
             </Reveal>
             <Reveal delay={0.08}>
               <h1 className="h1 hero-title">
-                Build digital <span className="grad-text">futures</span> with CodeNeeti
+                We build
+                <RotatingWord words={ROTATING} />
+                that grow your business
               </h1>
             </Reveal>
             <Reveal delay={0.16}>
               <p className="lead hero-lead">
-                We craft powerful websites, mobile apps and AI automations for growing businesses,
-                and train the next generation of developers. Your vision, our code.
+                CodeNeeti crafts powerful websites, mobile apps and AI automations for growing businesses,
+                and trains the next generation of developers. Your vision, our code.
               </p>
             </Reveal>
             <Reveal delay={0.24} className="hero-actions">
               <Link to="/contact" className="btn btn-primary btn-lg">
                 Start your project <FiArrowRight />
               </Link>
-              <Link to="/about" className="btn btn-ghost btn-lg">Learn more</Link>
+              <a href="https://wa.me/919661542794" target="_blank" rel="noopener noreferrer" className="btn btn-wa btn-lg">
+                <FaWhatsapp size={20} /> Chat on WhatsApp
+              </a>
             </Reveal>
             <Reveal delay={0.32}>
               <ul className="hero-checks">
@@ -83,35 +121,24 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <Reveal delay={0.2} className="hero-visual" aria-hidden="true">
-            <div className="code-window">
-              <div className="code-top">
-                <span className="cdot r" /><span className="cdot y" /><span className="cdot g" />
-                <span className="code-file">project.js</span>
+          <Reveal delay={0.15} className="hero-visual" aria-hidden="true">
+            <div className="orbit">
+              <div className="orbit-ring r2">
+                {OUTER.map((t, i) => (
+                  <div className="orbit-item" key={t.label} style={{ "--a": `${(360 / OUTER.length) * i - 90}deg` }}>
+                    <span className="tech" title={t.label} style={{ color: t.color }}>{t.icon}</span>
+                  </div>
+                ))}
               </div>
-              <pre className="code-body">
-<span className="k">const</span> <span className="v">project</span> = {"{"}{"\n"}
-{"  "}<span className="p">name</span>: <span className="s">"Your Dream App"</span>,{"\n"}
-{"  "}<span className="p">stack</span>: [<span className="s">"React"</span>, <span className="s">"Node"</span>],{"\n"}
-{"  "}<span className="p">ai</span>: <span className="b">true</span>,{"\n"}
-{"  "}<span className="p">status</span>: <span className="s">"🚀 Launched"</span>,{"\n"}
-{"}"};{"\n"}
-{"\n"}
-<span className="v">codeneeti</span>.<span className="f">build</span>(<span className="v">project</span>);
-              </pre>
-            </div>
-            <div className="float-card fc-1">
-              <div className="fc-icon"><FiSmartphone /></div>
-              <div>
-                <strong>Mobile-first</strong>
-                <span>Looks great on every device</span>
+              <div className="orbit-ring r1">
+                {INNER.map((label, i) => (
+                  <div className="orbit-item" key={label} style={{ "--a": `${(360 / INNER.length) * i - 45}deg` }}>
+                    <span className="tag-pill">{label}</span>
+                  </div>
+                ))}
               </div>
-            </div>
-            <div className="float-card fc-2">
-              <div className="fc-icon"><FiCheck /></div>
-              <div>
-                <strong>Delivered</strong>
-                <span>On time, every time</span>
+              <div className="orbit-core">
+                <img src={logo} alt="" width="120" height="120" />
               </div>
             </div>
           </Reveal>

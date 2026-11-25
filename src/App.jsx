@@ -17,7 +17,7 @@ function NotFound() {
   return (
     <section className="page-hero" style={{ minHeight: "70vh" }}>
       <div className="container">
-        <div className="eyebrow" style={{ display: "flex", justifyContent: "center" }}>Error 404</div>
+        <div className="eyebrow">Error 404</div>
         <h1 className="h1">Page not <span className="grad-text">found</span></h1>
         <p className="lead" style={{ marginBottom: "2rem" }}>The page you're looking for doesn't exist or has moved.</p>
         <Link to="/" className="btn btn-primary">Back to Home</Link>

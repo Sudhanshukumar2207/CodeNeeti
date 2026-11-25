@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowRight, FiPhone } from "react-icons/fi";
 import logo from "../assets/Codeneeti_logo-removebg.png";
 
 const NAV_ITEMS = [
@@ -50,6 +50,9 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-actions">
+          <a href="tel:+919661542794" className="nav-phone" aria-label="Call CodeNeeti">
+            <FiPhone size={16} /> +91 96615 42794
+          </a>
           <Link to="/contact" className="btn btn-primary btn-sm">
             Get a Quote <FiArrowRight />
           </Link>
