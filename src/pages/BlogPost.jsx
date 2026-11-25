@@ -98,7 +98,7 @@ export default function BlogPost() {
     );
   }
 
-  const canonicalUrl = `https://codeneeti.in/blog/${post.slug}`;
+  const canonicalUrl = `https://codeneeti.com/blog/${post.slug}`;
   const metaTitle = post.metaTitle || `${post.title} | CodeNeeti`;
   const metaDescription = post.metaDescription || post.excerpt || "Read the latest article from CodeNeeti.";
   const related = sortByDate(POSTS.filter((p) => p.slug !== post.slug)).slice(0, 3);

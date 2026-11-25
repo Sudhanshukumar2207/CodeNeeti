@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://codeneeti.in/sitemap.xml
+Sitemap: https://codeneeti.com/sitemap.xml

@@ -53,7 +53,7 @@
             <div class="brand">CodeNeeti</div>
             <h1>XML Sitemap</h1>
             <p class="sub">This sitemap helps search engines like Google and Bing find every page on
-              <a href="https://codeneeti.in/">codeneeti.in</a>. Learn more at
+              <a href="https://codeneeti.com/">codeneeti.com</a>. Learn more at
               <a href="https://www.sitemaps.org/" target="_blank" rel="noopener">sitemaps.org</a>.</p>
             <div class="stats">
               <div class="stat"><b><xsl:value-of select="count(s:urlset/s:url)"/></b><span>Total URLs</span></div>
@@ -80,8 +80,8 @@
                     <td class="n"><xsl:value-of select="position()"/></td>
                     <td>
                       <a href="{s:loc}">
-                        <span class="host">codeneeti.in</span>
-                        <xsl:value-of select="substring-after(s:loc,'codeneeti.in')"/>
+                        <span class="host">codeneeti.com</span>
+                        <xsl:value-of select="substring-after(s:loc,'codeneeti.com')"/>
                       </a>
                       <xsl:if test="contains(s:loc,'/blog/')"><span class="tag">Blog</span></xsl:if>
                     </td>

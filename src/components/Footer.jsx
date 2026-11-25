@@ -64,7 +64,7 @@ export default function Footer() {
           <div>
             <h4>Get in touch</h4>
             <ul>
-              <li><a href="mailto:info@codeneeti.in"><FiMail size={15} /> info@codeneeti.in</a></li>
+              <li><a href="mailto:info@codeneeti.com"><FiMail size={15} /> info@codeneeti.com</a></li>
               <li><a href="tel:+919661542794"><FiPhone size={15} /> +91 96615 42794</a></li>
               <li><span><FiMapPin size={15} /> Rajapur Pul, Patna, Bihar</span></li>
               <li><span><FiClock size={15} /> Mon–Sat, 9 AM – 7 PM</span></li>

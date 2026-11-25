@@ -97,7 +97,7 @@ export default function OurTeam() {
               We're always looking for talented developers, designers and educators to join the CodeNeeti family.
             </p>
             <div className="actions">
-              <a href="mailto:info@codeneeti.in?subject=Job%20Application" className="btn btn-primary btn-lg">
+              <a href="mailto:info@codeneeti.com?subject=Job%20Application" className="btn btn-primary btn-lg">
                 Apply Now <FiArrowRight />
               </a>
             </div>
