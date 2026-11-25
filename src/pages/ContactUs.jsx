@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import "./PageHero.css";
-import "./Extra.css";
-import {Helmet} from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
+import { FiMail, FiPhone, FiMapPin, FiClock, FiSend, FiCheckCircle } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
+import { Reveal, PageHero } from "../components/ui";
 
 const config = {
   contact: {
@@ -30,6 +31,15 @@ const INITIAL_STATE = Object.fromEntries(
   Object.keys(config.contact.form).map((input) => [input, ""])
 );
 
+const TOPICS = ["Website", "Mobile App", "AI Automation", "SEO / Marketing", "Training"];
+
+const DETAILS = [
+  { icon: <FiMail />,    label: "Email",    value: config.html.email,  link: `mailto:${config.html.email}` },
+  { icon: <FiPhone />,   label: "Phone",    value: "+91 96615 42794",  link: "tel:+919661542794" },
+  { icon: <FiMapPin />,  label: "Location", value: "Rajapur Pul, Patna, Bihar" },
+  { icon: <FiClock />,   label: "Hours",    value: "Mon–Sat, 9 AM – 7 PM" },
+];
+
 export default function ContactUs() {
   const formRef = useRef();
   const [form, setForm] = useState(INITIAL_STATE);
@@ -46,6 +56,8 @@ export default function ContactUs() {
       : value;
     setForm({ ...form, [name]: updatedValue });
   };
+
+  const pickTopic = (topic) => setForm({ ...form, subject: `${topic} enquiry` });
 
   const openMailClient = () => {
     const body = `Name: ${form.name}\nEmail: ${form.email}\nMo No: ${form.mobile}\nSubject: ${form.subject}\n\n${form.message}`;
@@ -86,7 +98,7 @@ export default function ContactUs() {
           setLoading(false);
           setSubmitted(true);
           setForm(INITIAL_STATE);
-          setTimeout(() => setSubmitted(false), 4000);
+          setTimeout(() => setSubmitted(false), 6000);
         },
         (error) => {
           setLoading(false);
@@ -98,143 +110,161 @@ export default function ContactUs() {
 
   return (
     <>
-<Helmet>
-  <title>Contact CodeNeeti | Free Consultation</title>
-  <meta
-    name="description"
-    content="Contact CodeNeeti for website development, app development, AI automation and training services."
-  />
-</Helmet>
-    <div>
-      <section className="page-hero">
-        <div className="page-hero-orb" />
-        <div className="page-hero-content">
-          <div className="section-tag">Get In Touch</div>
-          <h1 className="section-title">Contact <span>Us</span></h1>
-          <p className="section-desc">
-            Have a project in mind or want to enroll in our training? We'd love to hear from you!
-          </p>
-        </div>
-      </section>
+      <Helmet>
+        <title>Contact CodeNeeti | Free Consultation</title>
+        <meta
+          name="description"
+          content="Contact CodeNeeti for website development, app development, AI automation and training services."
+        />
+      </Helmet>
+
+      <PageHero
+        crumb="Contact"
+        eyebrow="Get in touch"
+        title={<>Let's build something <span className="grad-text">together</span></>}
+        desc="Have a project in mind or want to enroll in our training? Tell us a little about it and we'll get back to you within 24 hours."
+      />
 
       <section className="section">
-        <div className="section-inner">
-          <div className="contact-layout">
-            <div className="contact-info">
-              <h2 style={{ fontFamily: "var(--font-head)", fontSize: "1.5rem", marginBottom: "0.5rem" }}>
-                Let's Build Something <span style={{ color: "var(--accent)" }}>Together</span>
-              </h2>
-              <div className="divider" />
-              <p style={{ color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "2rem" }}>
-                Whether you need a website, mobile app, or want to learn development — our team is ready to help. Reach out and we'll get back to you within 24 hours.
-              </p>
+        <div className="container contact-layout">
+          {/* Info column */}
+          <Reveal className="contact-info">
+            <h2 className="h3" style={{ fontSize: "1.5rem" }}>Talk to us directly</h2>
+            <p className="muted" style={{ marginBottom: "1.75rem" }}>
+              Prefer a quick chat? Call or message us on WhatsApp. We're happy to answer any question.
+            </p>
 
-              {[
-                { icon: "📨", label: "Email", value: config.html.email, link: `mailto:${config.html.email}` },
-                { icon: "📞", label: "Phone", value: "+91 9661542794", link: "tel:+919661542794" },
-                { icon: "📍", label: "Location", value: "Your City, India" },
-                { icon: "⏰", label: "Hours", value: "Mon–Sat, 9AM – 7PM" },
-              ].map((c) => (
-                <div className="contact-detail" key={c.label}>
-                  <span className="contact-icon">{c.icon}</span>
-                  <div>
-                    <div style={{ fontSize: "0.78rem", color: "var(--accent)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em" }}>{c.label}</div>
-                    <div style={{ fontSize: "0.95rem" }}>
-                      {c.link ? (
-                        <a href={c.link} style={{ color: "inherit", textDecoration: "none" }}>{c.value}</a>
-                      ) : c.value}
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="contact-list">
+              {DETAILS.map((c) => {
+                const inner = (
+                  <>
+                    <span className="contact-icon">{c.icon}</span>
+                    <span>
+                      <span className="contact-label">{c.label}</span>
+                      <span className="contact-value">{c.value}</span>
+                    </span>
+                  </>
+                );
+                return c.link
+                  ? <a key={c.label} href={c.link} className="contact-item">{inner}</a>
+                  : <div key={c.label} className="contact-item">{inner}</div>;
+              })}
             </div>
 
-            <div className="card contact-form-card">
-              {submitted && (
-                <div className="success-msg">
-                  ✅ Thank you. I will get back to you as soon as possible.
-                </div>
-              )}
+            <a
+              href="https://wa.me/919661542794"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn wa-btn"
+            >
+              <FaWhatsapp size={20} /> Chat on WhatsApp
+            </a>
+          </Reveal>
+
+          {/* Form column */}
+          <Reveal delay={0.1} className="card form-card">
+            {submitted ? (
+              <div className="form-success">
+                <FiCheckCircle size={44} />
+                <h3 className="h3" style={{ fontSize: "1.4rem" }}>Message sent!</h3>
+                <p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+                <button className="btn btn-ghost" onClick={() => setSubmitted(false)}>Send another message</button>
+              </div>
+            ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
+                <div>
+                  <span className="field-label">I'm interested in</span>
+                  <div className="topic-row">
+                    {TOPICS.map((t) => (
+                      <button
+                        type="button"
+                        key={t}
+                        className={`topic ${form.subject === `${t} enquiry` ? "active" : ""}`}
+                        onClick={() => pickTopic(t)}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="form-row">
-                  <div className="form-group">
-                    <label>Full Name</label>
+                  <label className="field">
+                    <span className="field-label">Full name</span>
                     <input
                       type="text"
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="John Doe"
+                      placeholder="Rahul Kumar"
                       inputMode="text"
                       pattern="[A-Za-z ]+"
                       maxLength={40}
+                      autoComplete="name"
                       required
                     />
-                  </div>
-                  <div className="form-group">
-                    <label>Email Address</label>
+                  </label>
+                  <label className="field">
+                    <span className="field-label">Email address</span>
                     <input
                       type="email"
                       name="email"
                       value={form.email}
                       onChange={handleChange}
-                      placeholder="john@email.com"
+                      placeholder="you@email.com"
+                      autoComplete="email"
                       required
                     />
-                  </div>
+                  </label>
                 </div>
                 <div className="form-row">
-                  <div className="form-group">
-                    <label>Mobile Number</label>
+                  <label className="field">
+                    <span className="field-label">Mobile number</span>
                     <input
                       type="tel"
                       name="mobile"
                       value={form.mobile}
                       onChange={handleChange}
-                      placeholder="9661542794"
+                      placeholder="10-digit number"
                       inputMode="numeric"
                       pattern="[0-9]*"
                       maxLength={10}
+                      autoComplete="tel"
                       required
                     />
-                  </div>
-                  <div className="form-group">
-                    <label>Subject</label>
+                  </label>
+                  <label className="field">
+                    <span className="field-label">Subject</span>
                     <input
                       type="text"
                       name="subject"
                       value={form.subject}
                       onChange={handleChange}
-                      placeholder="Project inquiry / Training enrollment"
+                      placeholder="Project inquiry / Training"
                       required
                     />
-                  </div>
+                  </label>
                 </div>
-                <div className="form-group">
-                  <label>Message</label>
+                <label className="field">
+                  <span className="field-label">Message</span>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
                     rows={5}
-                    placeholder="Tell us about your project or query..."
+                    placeholder="Tell us about your project or query…"
                     required
                   />
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  style={{ width: "100%", justifyContent: "center", cursor: loading ? "not-allowed" : "pointer" }}
-                  disabled={loading}
-                >
-                  {loading ? "Sending..." : "Send Message ➜"}
+                </label>
+                <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} disabled={loading}>
+                  {loading ? "Sending…" : <>Send message <FiSend /></>}
                 </button>
+                <p className="form-note">We respect your privacy. Your details are only used to reply to you.</p>
               </form>
-            </div>
-          </div>
+            )}
+          </Reveal>
         </div>
       </section>
-    </div>
     </>
   );
 }

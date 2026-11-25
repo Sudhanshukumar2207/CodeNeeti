@@ -1,75 +1,80 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
+import { FiMail, FiPhone, FiMapPin, FiClock } from "react-icons/fi";
 import logo from "../assets/Codeneeti_logo-removebg.png";
-import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
+
+const LINKS = [
+  ["Home", "/"], ["About Us", "/about"], ["Why Choose Us", "/why"],
+  ["Our Team", "/team"], ["Blog", "/blog"], ["Contact Us", "/contact"],
+];
+
+const SERVICES = [
+  "Web Development", "App Development", "AI Automation",
+  "SEO & Digital Marketing", "Tech Training",
+];
+
+const SOCIALS = [
+  { href: "https://www.facebook.com/CodeNeeti1",  label: "Facebook",  icon: <FaFacebookF size={16} /> },
+  { href: "https://www.instagram.com/codeneeti1", label: "Instagram", icon: <FaInstagram size={17} /> },
+  { href: "https://www.youtube.com/@CodeNeeti",   label: "YouTube",   icon: <FaYoutube size={17} /> },
+  { href: "https://wa.me/919661542794",           label: "WhatsApp",  icon: <FaWhatsapp size={17} /> },
+];
 
 export default function Footer() {
-  const navigate = useNavigate();
-  const go = (to) => { navigate(to); window.scrollTo({ top: 0, behavior: "smooth" }); };
-
   return (
     <footer className="footer">
-      <div className="footer-inner">
+      <div className="container">
         <div className="footer-top">
-          {/* Brand */}
-          <div className="footer-brand animate-footer-fade" style={{ animationDelay: "0.1s" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.75rem" }}>
-              <div className="nav-logo-box"><img src={logo} alt="CodeNeeti Logo" height={35} /></div>
-              <span style={{ fontFamily: "var(--font-head)", fontSize: "1.2rem", fontWeight: 700 }}>
-                Code<span style={{ color: "var(--accent)" }}>Neeti</span>
-              </span>
-            </div>
+          <div className="footer-about">
+            <Link to="/" className="brand">
+              <img src={logo} alt="CodeNeeti Logo" width="36" height="36" />
+              <span className="brand-name">Code<span>Neeti</span></span>
+            </Link>
             <p>
-              Empowering businesses with cutting-edge Web & App Development solutions,
-              and nurturing the next generation of tech talent through quality training programs.
-            </p> <br />
-            <h4>Follow Us</h4>
-      <p style={{ display: "flex", gap: "3rem", marginTop: "0.5rem" }}>
-      <a
-        href="YOUR_FACEBOOK_URL"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: "blue", textDecoration: "none", alignItems: "center", gap: "8px" }}
-      >
-        <FaFacebook size={20} color="#1877F2" />
-      </a>
-      
-      <a
-        href="https://www.instagram.com/codeneeti1"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: "inherit", textDecoration: "none", alignItems: "center", gap: "8px" }}
-      >
-        <FaInstagram size={20} color="#E1306C" />
-      </a></p>
+              Web & app development, AI automation and hands-on tech training,
+              helping businesses grow and students build real careers.
+            </p>
+            <div className="socials">
+              {SOCIALS.map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                  {s.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="footer-col animate-footer-fade" style={{ animationDelay: "0.2s" }}>
-            <h4>Quick Links</h4>
+          <div>
+            <h4>Company</h4>
             <ul>
-              {[["Home","/"],["About Us","/about"],["Why Choose Us","/why"],["Our Team","/team"],["Blog","/blog"],["Contact Us","/contact"]].map(([label, to], idx) => (
-                <li key={to} className="footer-link-item" style={{ animationDelay: `${0.25 + idx * 0.08}s` }}>
-                  <button onClick={() => go(to)}>{label}</button>
-                </li>
+              {LINKS.map(([label, to]) => (
+                <li key={to}><Link to={to}>{label}</Link></li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="footer-col animate-footer-fade" style={{ animationDelay: "0.3s" }}>
-            <h4>Contact</h4>
+          <div>
+            <h4>Services</h4>
             <ul>
-              <li className="footer-contact-item" style={{ animationDelay: "0.35s" }}><a style={{ color: "inherit", textDecoration: "none" }} href="mailto:info@codeneeti.com">📨 info@codeneeti.in</a></li>
-              <li className="footer-contact-item" style={{ animationDelay: "0.43s" }}><a style={{ color: "inherit", textDecoration: "none" }} href="tel:+919661542794">📞 +91 9661542794</a></li>
-              <li className="footer-contact-item" style={{ animationDelay: "0.51s" }}>📍 Rajapur Pull, Patna</li>
+              {SERVICES.map((s) => (
+                <li key={s}><Link to="/contact">{s}</Link></li>
+              ))}
             </ul>
           </div>
-          
+
+          <div>
+            <h4>Get in touch</h4>
+            <ul>
+              <li><a href="mailto:info@codeneeti.in"><FiMail size={15} /> info@codeneeti.in</a></li>
+              <li><a href="tel:+919661542794"><FiPhone size={15} /> +91 96615 42794</a></li>
+              <li><span><FiMapPin size={15} /> Rajapur Pul, Patna, Bihar</span></li>
+              <li><span><FiClock size={15} /> Mon–Sat, 9 AM – 7 PM</span></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="footer-bottom animate-footer-fade" style={{ animationDelay: "0.4s" }}>
-          <p>© 2025 <span>CodeNeeti</span>. All rights reserved.</p>
-          <p>Made with ❤️ in India</p>
+        <div className="footer-bottom">
+          <p>© {new Date().getFullYear()} CodeNeeti. All rights reserved.</p>
+          <p>Made with ❤️ in Bihar, India</p>
         </div>
       </div>
     </footer>
